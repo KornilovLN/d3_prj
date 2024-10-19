@@ -1,0 +1,22 @@
+<!-- app/templates/d3_test_09.html -->
+{% extends "base.html" %}
+
+{% block title %}D3 Test - SVG Display{% endblock %}
+
+{% block content %}
+<div id="d3-container">
+    <h2>SVG Display Example</h2>
+    <div id="svg-container" style="width: 1200px; height: 800px; border: 1px solid #ccc;"></div>
+</div>
+
+<script>
+    // Use D3.js to load and append the SVG
+    d3.xml("{{ url_for('static', filename='drawing.svg') }}").then(function(data) {
+        const svgNode = data.documentElement;
+        document.getElementById("svg-container").appendChild(svgNode);
+    }).catch(function(error) {
+        console.error("Error loading SVG:", error);
+    });
+</script>
+{% endblock %}
+

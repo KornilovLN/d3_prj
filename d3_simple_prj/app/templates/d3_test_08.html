@@ -1,0 +1,69 @@
+<!-- app/templates/d3_test_08.html -->
+{% extends "base.html" %}
+
+{% block title %}D3 Test - Text{% endblock %}
+
+{% block content %}
+<div id="d3-container">
+    <h2>Text Example</h2>
+    <svg width="1200" height="400"></svg>
+</div>
+
+<script>
+    // Example D3.js code to render text
+    const svg = d3.select("svg");
+
+    svg.append("text")
+        .attr("x", 600)          // X position of the text
+        .attr("y", 100)          // Y position of the text
+        .attr("text-anchor", "middle") // Align text to the middle
+        .style("font-size", "72px")    // Font size
+        .style("font-family", "Arial, sans-serif") // Font family
+        .style("fill", "yellow")        // Text color
+        .style("stroke", "red")
+        .style("stroke-width", 1)
+        .text("Hello, SVG!");   // Text content
+</script>
+
+<script>
+    const svg1 = d3.select("svg");
+
+    // Define a filter for the drop shadow
+    const defs = svg1.append("defs");
+
+    const filter = defs.append("filter")
+        .attr("id", "drop-shadow")
+        .attr("height", "130%");
+
+    filter.append("feGaussianBlur")
+        .attr("in", "SourceAlpha")
+        .attr("stdDeviation", 5) // Adjust the blur level
+        .attr("result", "blur");
+
+    filter.append("feOffset")
+        .attr("in", "blur")
+        .attr("dx", 4) // Horizontal offset
+        .attr("dy", 4) // Vertical offset
+        .attr("result", "offsetBlur");
+
+    const feMerge = filter.append("feMerge");
+
+    feMerge.append("feMergeNode")
+        .attr("in", "offsetBlur");
+    feMerge.append("feMergeNode")
+        .attr("in", "SourceGraphic");
+
+    // Add text with the drop shadow filter applied
+    svg1.append("text")
+        .attr("x", 600)
+        .attr("y", 250)
+        .attr("text-anchor", "middle")
+        .style("font-size", "96px")
+        .style("font-family", "Times New Roman, serif") // Different font family
+        .style("fill", "lightgreen")
+        .style("stroke", "blue")
+        .style("stroke-width", 1)
+        .style("filter", "url(#drop-shadow)") // Apply the drop shadow filter
+        .text("Hello, SVG with Shadow!");
+</script>
+{% endblock %}
