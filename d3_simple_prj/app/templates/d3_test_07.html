@@ -1,0 +1,24 @@
+<!-- app/templates/d3_test_07.html -->
+{% extends "base.html" %}
+
+{% block title %}D3 Test - Линия{% endblock %}
+
+{% block content %}
+<div id="d3-container">
+    <h2>D3.js -> Линия</h2>
+    <svg width="600" height="400"></svg>
+</div>
+
+<script>
+    // Example D3.js code to create a line
+    const svg = d3.select("svg");
+    svg.append("line")
+        .attr("x1", 100)
+        .attr("y1", 100)
+        .attr("x2", 500)
+        .attr("y2", 300)
+        .style("stroke", "red")
+        .style("stroke-width", 3);
+
+</script>
+{% endblock %}

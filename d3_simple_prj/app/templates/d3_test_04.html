@@ -1,0 +1,24 @@
+<!-- app/templates/d3_test_04.html -->
+{% extends "base.html" %}
+
+{% block title %}D3 Test{% endblock %}
+
+{% block content %}
+<div id="d3-container">
+    <h2>D3.js -> Эллипс</h2>
+    <svg width="600" height="400"></svg>
+</div>
+
+<script>
+    // Example D3.js code to create a simple ellipse
+    const svg = d3.select("svg");
+    svg.append("ellipse")
+        .attr("cx", 300)
+        .attr("cy", 200)
+        .attr("rx", 100)
+        .attr("ry", 50)
+        .style("fill", "lightblue")
+        .style("stroke", "black")
+        .style("stroke-width", 2);
+</script>
+{% endblock %}

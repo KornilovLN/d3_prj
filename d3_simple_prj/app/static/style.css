@@ -1,0 +1,47 @@
+/* app/static/style.css */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header, footer {
+    background-color: #706e74;
+    color: rgb(228, 216, 201);
+    text-align: center;
+    padding: 10px 0;
+}
+
+.container {
+    display: flex;
+}
+
+.navigator {
+    width: 200px;
+    background-color: #f4f4f4;
+    padding: 15px;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+}
+
+.navigator h2 {
+    margin-top: 0;
+}
+
+.navigator ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.navigator ul li {
+    margin: 10px 0;
+}
+
+.navigator ul li a {
+    text-decoration: none;
+    color: #333;
+}
+
+.content {
+    flex-grow: 1;
+    padding: 15px;
+}

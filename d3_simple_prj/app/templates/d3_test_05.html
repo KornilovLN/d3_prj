@@ -1,0 +1,24 @@
+<!-- app/templates/d3_test_05.html -->
+{% extends "base.html" %}
+
+{% block title %}D3 Test{% endblock %}
+
+{% block content %}
+<div id="d3-container">
+    <h2>D3.js -> Прямоугольник</h2>
+    <svg width="600" height="400"></svg>
+</div>
+
+<script>
+    // Example D3.js code to create a simple rectangle
+    const svg = d3.select("svg");
+    svg.append("rect")
+        .attr("x", 200)
+        .attr("y", 100)
+        .attr("width", 200)
+        .attr("height", 200)
+        .style("fill", "brown")
+        .style("stroke", "blue")
+        .style("stroke-width", 4);
+</script>
+{% endblock %}

@@ -1,0 +1,24 @@
+<!-- app/templates/d3_test_02.html -->
+{% extends "base.html" %}
+
+{% block title %}D3 Test - Квадрат{% endblock %}
+
+{% block content %}
+<div id="d3-container">
+    <h2>D3.js -> Квадрат</h2>
+    <svg width="600" height="400"></svg>
+</div>
+
+<script>
+    // Example D3.js code to create a square
+    const svg = d3.select("svg");
+    svg.append("rect")
+        .attr("x", 250)
+        .attr("y", 150)
+        .attr("width", 200)
+        .attr("height", 200)
+        .style("fill", "yellow")
+        .style("stroke", "green")
+        .style("stroke-width", 4);
+</script>
+{% endblock %}

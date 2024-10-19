@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>D3 Test</title>
+    <script type="text/javascript" src="https://d3js.org/d3.v7.min.js"></script>
+</head>
+<body>
+    <div id="chart"></div>
+    <script type="text/javascript">
+        //const apiKey = '1191982e60cf38065b041a06e4c28ba4'; // Replace with your OpenWeatherMap API key
+        const apiKey = "3484c262c76b9d3f34dd41a8cfa19f69";
+        const city = 'London'; // Replace with your desired city
+        const lat = 51.5074; // Latitude for London
+        const lon = -0.1278; // Longitude for London
+
+        async function fetchTemperatureData() {
+            try {
+                const response = await fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=current,minutely,daily,alerts&units=metric&appid=${apiKey}`);
+                const data = await response.json();
+                console.log(data); // Вывод данных для проверки ответа
+                return data.hourly.map(entry => ({
+                    Date: new Date(entry.dt * 1000), // Преобразование Unix timestamp в JavaScript Date
+                    Temp: entry.temp
+                }));
+            } catch (error) {
+                console.error('Ошибка при получении данных о температуре:', error);
+            }
+        }
+
+
+        async function createChart() {
+            const temperatureData = await fetchTemperatureData();
+            console.log(temperatureData); 
+
+            const width = 928;
+            const height = 600;
+            const marginTop = 10;
+            const marginRight = 20;
+            const marginBottom = 30;
+            const marginLeft = 40;
+
+            const values = Float64Array.from(temperatureData, d => d.Temp);
+
+            const x = d3.scaleTime()
+                .domain(d3.extent(temperatureData, d => d.Date))
+                .rangeRound([marginLeft, width - marginRight]);
+
+            const y = d3.scaleLinear()
+                .domain(d3.extent(values))
+                .rangeRound([height - marginBottom - 20, marginTop]);
+
+            const line = d3.line()
+                .defined((d, i) => !isNaN(temperatureData[i].Date) && !isNaN(d))
+                .x((d, i) => x(temperatureData[i].Date))
+                .y(y);
+
+            const svg = d3.select("#chart").append("svg")
+                .attr("width", width)
+                .attr("height", height)
+                .attr("viewBox", [0, 0, width, height])
+                .attr("style", "max-width: 100%; height: auto;");
+
+            svg.append("g")
+                .attr("transform", `translate(0,${height - marginBottom})`)
+                .call(d3.axisBottom(x).ticks(width / 80))
+                .call(g => g.select(".domain").remove());
+
+            svg.append("g")
+                .attr("transform", `translate(${marginLeft},0)`)
+                .call(d3.axisLeft(y).tickValues(d3.ticks(...y.domain(), 10)).tickFormat(d => d))
+                .call(g => g.select(".domain").remove())
+                .call(g => g.selectAll(".tick line").clone()
+                    .attr("x2", width - marginLeft - marginRight)
+                    .attr("stroke-opacity", 0.1))
+                .call(g => g.select(".tick:last-of-type text").clone()
+                    .attr("x", 3)
+                    .attr("text-anchor", "start")
+                    .attr("font-weight", "bold")
+                    .text("↑ Temperature (°C)"));
+
+            svg.append("g")
+                .attr("fill", "none")
+                .attr("stroke-width", 1.5)
+                .attr("stroke-linejoin", "round")
+                .attr("stroke-linecap", "round")
+                .selectAll()
+                .data([values, ...bollinger(values, 20, [-2, 0, +2])]) // Example N and K values
+                .join("path")
+                .attr("stroke", (d, i) => ["#aaa", "green", "blue", "red"][i])
+                .attr("d", line);
+
+            return svg.node();
+        }
+
+        // Bollinger Bands function
+        function bollinger(values, N, K) {
+            let i = 0;
+            let sum = 0;
+            let sum2 = 0;
+            const bands = K.map(() => new Float64Array(values.length).fill(NaN));
+            for (let n = Math.min(N - 1, values.length); i < n; ++i) {
+                const value = values[i];
+                sum += value, sum2 += value ** 2;
+            }
+            for (let n = values.length, m = bands.length; i < n; ++i) {
+                const value = values[i];
+                sum += value, sum2 += value ** 2;
+                const mean = sum / N;
+                const deviation = Math.sqrt((sum2 - sum ** 2 / N) / (N - 1));
+                for (let j = 0; j < K.length; ++j) {
+                    bands[j][i] = mean + deviation * K[j];
+                }
+                const value0 = values[i - N + 1];
+                sum -= value0, sum2 -= value0 ** 2;
+            }
+            return bands;
+        }
+
+        createChart();
+    </script>
+</body>
+</html>

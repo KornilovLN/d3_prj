@@ -1,0 +1,42 @@
+<!-- app/templates/base.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}My Flask App{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Flask приложение для тестирования D3 библиотеки</h1>
+    </header>
+
+    <div class="container">
+        <nav class="navigator">
+            <h2>Выбор тестов</h2>
+            <ul>
+                <li><a href="{{ url_for('main.d3_test', test_number=1) }}">Круг</a></li>
+                <li><a href="{{ url_for('main.d3_test', test_number=2) }}">Квадрат</a></li>
+                <li><a href="{{ url_for('main.d3_test', test_number=3) }}">Ромб</a></li>
+                <li><a href="{{ url_for('main.d3_test', test_number=4) }}">Эллипс</a></li>
+                <li><a href="{{ url_for('main.d3_test', test_number=5) }}">Прямоугольник</a></li>
+                <li><a href="{{ url_for('main.d3_test', test_number=6) }}">Поли-линия</a></li>
+                <li><a href="{{ url_for('main.d3_test', test_number=7) }}">Линия</a></li>
+                <!-- Add more links as needed -->
+            </ul>
+        </nav>
+
+        <main class="content">
+            {% block content %}
+            <!-- Content will be injected here -->
+            {% endblock %}
+        </main>
+    </div>
+
+    <footer>
+        <p>&copy; {{ year }} Flask App: Test D3 library</p>
+    </footer>
+</body>
+</html>

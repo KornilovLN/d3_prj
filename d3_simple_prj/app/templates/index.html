@@ -1,0 +1,14 @@
+<!-- app/templates/index.html -->
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<div id="d1">
+    <h1>My first SVG</h1>
+    <script type="text/javascript" src="{{ url_for('static', filename='d3/d3.v3.js') }}"></script>
+    <script type="text/javascript">
+        // Your beautiful D3 code will go here
+    </script>
+</div>
+{% endblock %}

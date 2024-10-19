@@ -1,0 +1,9 @@
+.
+├── Dockerfile
+├── index.html
+├── rebuild.sh
+├── shared_folder
+├── start.sh
+└── tree
+
+1 directory, 5 files

@@ -1,0 +1,21 @@
+<!-- app/templates/d3_test_06.html -->
+{% extends "base.html" %}
+
+{% block title %}D3 Test - Поли-линия{% endblock %}
+
+{% block content %}
+<div id="d3-container">
+    <h2>D3.js -> Поли-линия</h2>
+    <svg width="600" height="400"></svg>
+</div>
+
+<script>
+    // Example D3.js code to create a polyline
+    const svg = d3.select("svg");
+    svg.append("polyline")
+        .attr("points", "100,80 150,170 200,60 250,150")
+        .style("fill", "none")
+        .style("stroke", "blue")
+        .style("stroke-width", 7);
+</script>
+{% endblock %}

@@ -1,0 +1,16 @@
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: d3_simple_prj-web  # Specify the desired image name here  
+    container_name: d3_simple_prj_cont  # Specify the container name here
+    ports:
+      - "8880:80"
+    volumes:
+      - .:/usr/share/nginx/html
+      - ./shared_folder:/shared_folder
+    environment:
+      - PYTHONUNBUFFERED=1
+    command: >
+      sh -c "nginx && python /usr/share/nginx/html/app/__init__.py"
