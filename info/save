@@ -139,3 +139,29 @@
         </script>
     </body>
 </html>
+
+
+#-------------------------------------------
+<div class="container">
+    <nav class="navigator">
+        <h2>Выбор тестов</h2>
+        <ul>
+            <li><a href="{{ url_for('main.d3_test', test_number=1) }}">Круг</a></li>
+            <li><a href="{{ url_for('main.d3_test', test_number=2) }}">Квадрат</a></li>
+            <li><a href="{{ url_for('main.d3_test', test_number=3) }}">Ромб</a></li>
+            <li><a href="{{ url_for('main.d3_test', test_number=4) }}">Эллипс</a></li>
+            <li><a href="{{ url_for('main.d3_test', test_number=5) }}">Прямоугольник</a></li>
+            <li><a href="{{ url_for('main.d3_test', test_number=6) }}">Поли-линия</a></li>
+            <li><a href="{{ url_for('main.d3_test', test_number=7) }}">Линия</a></li>
+            <li><a href="{{ url_for('main.d3_test', test_number=8) }}">Текст</a></li>
+            <li><a href="{{ url_for('main.d3_test', test_number=9) }}">drawing.svg</a></li>
+            <!-- Add more links as needed -->
+        </ul>
+    </nav>
+
+    <main class="content">
+        {% block content %}
+        <!-- Content will be injected here -->
+        {% endblock %}
+    </main>
+</div>

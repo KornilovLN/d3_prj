@@ -1,11 +1,11 @@
-<!-- app/templates/d3_test_08.html -->
+<!-- app/templates/d3_test_010.html -->
 {% extends "base.html" %}
 
-{% block title %}D3 Test - Text{% endblock %}
+{% block title %}D3 Test - Text 2{% endblock %}
 
 {% block content %}
 <div id="d3-container">
-    <h2 class="custom-sidebar">Text Example</h2>
+    <h2 class="custom-sidebar">Text Example 2</h2>
     <svg width="1200" height="800" style="border: 1px solid #ccc;"></svg>
 </div>
 
@@ -13,7 +13,12 @@
     // Example D3.js code to render text
     const svg = d3.select("svg");
 
-    svg.append("text")
+    // Create a group for the first text
+    const group1 = svg.append("g")
+        .attr("id", "group1");
+
+    // Add the first text to group1
+    group1.append("text")
         .attr("x", 600)          // X position of the text
         .attr("y", 100)          // Y position of the text
         .attr("text-anchor", "middle") // Align text to the middle
@@ -23,13 +28,13 @@
         .style("stroke", "red")
         .style("stroke-width", 1)
         .text("Hello, SVG!");   // Text content
-</script>
 
-<script>
-    const svg1 = d3.select("svg");
+    // Create a group for the second text with shadow
+    const group2 = svg.append("g")
+        .attr("id", "group2");
 
     // Define a filter for the drop shadow
-    const defs = svg1.append("defs");
+    const defs = group2.append("defs");
 
     const filter = defs.append("filter")
         .attr("id", "drop-shadow")
@@ -53,8 +58,8 @@
     feMerge.append("feMergeNode")
         .attr("in", "SourceGraphic");
 
-    // Add text with the drop shadow filter applied
-    svg1.append("text")
+    // Add text with the drop shadow filter applied to group2
+    group2.append("text")
         .attr("x", 600)
         .attr("y", 250)
         .attr("text-anchor", "middle")

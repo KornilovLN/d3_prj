@@ -5,40 +5,81 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}My Flask App{% endblock %}</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <!-- <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"> -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">  
+    <!-- CSS for the base.html template -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles_base.css') }}">
     <script src="https://d3js.org/d3.v6.min.js"></script>
 </head>
 <body>
-    <header>
-        <h1>Flask приложение для тестирования D3 библиотеки</h1>
+    <header class="custom-header">  
+        <div class="container-fluid">
+          <div class="row align-items-center">
+            <div class="col-md-3">
+                <img src="{{ url_for('static', filename='logo_big_2.png') }}" alt="Company Logo" height="100%">
+            </div>
+            <div class="col-md-3">
+                <p class="mb-0"> </p>
+                <p class="mb-0"> </p>
+              </div>
+              <div class="col-md-6 text-center">
+                <h1>Flask-app тест D3 lib</h1>
+            </div>
+          </div>
+        </div>
     </header>
 
-    <div class="container">
-        <nav class="navigator">
-            <h2>Выбор тестов</h2>
-            <ul>
-                <li><a href="{{ url_for('main.d3_test', test_number=1) }}">Круг</a></li>
-                <li><a href="{{ url_for('main.d3_test', test_number=2) }}">Квадрат</a></li>
-                <li><a href="{{ url_for('main.d3_test', test_number=3) }}">Ромб</a></li>
-                <li><a href="{{ url_for('main.d3_test', test_number=4) }}">Эллипс</a></li>
-                <li><a href="{{ url_for('main.d3_test', test_number=5) }}">Прямоугольник</a></li>
-                <li><a href="{{ url_for('main.d3_test', test_number=6) }}">Поли-линия</a></li>
-                <li><a href="{{ url_for('main.d3_test', test_number=7) }}">Линия</a></li>
-                <li><a href="{{ url_for('main.d3_test', test_number=8) }}">Текст</a></li>
-                <li><a href="{{ url_for('main.d3_test', test_number=9) }}">drawing.svg</a></li>
-                <!-- Add more links as needed -->
-            </ul>
-        </nav>
+    <div class="container-fluid mt-4">
+        <div class="row">
+          <div class="flex-grow-1 d-flex">
 
-        <main class="content">
-            {% block content %}
-            <!-- Content will be injected here -->
-            {% endblock %}
-        </main>
+            <nav class="col-md-3 col-lg-2 d-md-block bg-light sidebar custom-sidebar">
+                <div class="position-sticky">
+                    <h2 class="custom-sidebar">Выбор тестов</h2>
+                    <ul class="nav-list">
+                        <li><a href="{{ url_for('main.d3_test', test_number=1) }}">Круг</a></li>
+                        <li><a href="{{ url_for('main.d3_test', test_number=2) }}">Квадрат</a></li>
+                        <li><a href="{{ url_for('main.d3_test', test_number=3) }}">Ромб</a></li>
+                        <li><a href="{{ url_for('main.d3_test', test_number=4) }}">Эллипс</a></li>
+                        <li><a href="{{ url_for('main.d3_test', test_number=5) }}">Прямоугольник</a></li>
+                        <li><a href="{{ url_for('main.d3_test', test_number=6) }}">Поли-линия</a></li>
+                        <li><a href="{{ url_for('main.d3_test', test_number=7) }}">Линия</a></li>
+                        <li><a href="{{ url_for('main.d3_test', test_number=8) }}">Текст</a></li>
+                        <li><a href="{{ url_for('main.d3_test', test_number=9) }}">drawing.svg</a></li>
+                        <li><a href="{{ url_for('main.d3_test', test_number=10) }}">Текст 2</a></li>
+                        <!-- Add more links as needed -->
+                    </ul>
+                </div>
+            </nav>
+            
+            
+            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+              <div class="content">
+                {% block content %}
+                {% endblock %}
+              </div>
+            </main>
+
+          </div>
+        </div>
     </div>
 
-    <footer>
-        <p>&copy; {{ year }} Flask App: Test D3 library</p>
+    <footer class="custom-footer">
+        <div class="container">
+            <div class="d-flex justify-content-between">
+                <div>
+                    <p>&copy; Flask-app тест D3 lib</p>
+                    <p><a href="mailto:ivl@ivl.ua" class="text-white">E-mail: ivl@ivl.ua</a></p>
+                    <p><a href="https://www.ivl.ua" target="_blank" class="text-white">Github: https://www.ivl.ua</a></p>
+                </div>
+                <div class="text-end">
+                    <p><a href="mailto:ln.Kornilovstar@gmail.com" class="text-white">ln.Kornilovstar@gmail.com</a></p>
+                    <p><a href="https://github.com/KornilovLN" target="_blank" class="text-white">https://github.com/KornilovLN</a></p>
+                    <p><a href="https://gitlab.ivl.ua/starmark" target="_blank" class="text-white">https://gitlab.ivl.ua/starmark</a></p>
+                </div>
+            </div>
+        </div>
     </footer>
+
 </body>
 </html>

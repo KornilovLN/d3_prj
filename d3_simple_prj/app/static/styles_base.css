@@ -1,0 +1,75 @@
+.custom-header {
+  background-color: rgba(13, 202, 240, 0.25);
+  color: #0d6efd;
+  padding: 1rem;
+}
+.custom-header img {
+  filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3));
+}
+.custom-header h1 {
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+
+.custom-sidebar {
+  background-color: #f1e5d9; /* Sepia-like color */
+  box-shadow: inset -5px 0 5px rgba(0, 0, 0, 0.1); /* Adds depth */
+  height: 100%;
+}
+
+
+.custom-footer {
+  background-color: rgba(33, 37, 41, 0.5);
+  color: white;
+  padding: 1rem;
+  margin-top: 3rem;
+}
+.custom-footer p {
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+.custom-footer a {
+  color: white;
+}
+
+
+.document-title {
+  color: #0d6efd;  /* This is Bootstrap's primary blue color */ 
+  text-shadow: 3px 3px 6px rgba(0,0,0,0.5);
+}
+
+
+
+.custom-sidebar h2 {
+  color: #834c25; /* A brownish color (SaddleBrown) */
+}
+
+/* Remove default list styling */
+.nav-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Style the list items */
+.nav-list li {
+  margin-bottom: 10px; /* Space between items */
+}
+
+/* Style the links */
+.nav-list li a {
+  display: block; /* Make the link fill the li */
+  padding: 8px; /* Space inside the border */
+  text-decoration: none; /* Remove underline */
+  color: #362626; /* Text color */
+  border: 2px solid #ccc; /* Border around the link */
+  width: calc(100% - 8px);  /* Full width - 8px */
+  box-sizing: border-box; /* Include padding and border in element's total width and height */
+  transition: border-color 0.3s; /* Smooth transition for hover effect */
+}
+
+/* Hover effect */
+.nav-list li a:hover {
+  border-color: #007bff; /* Change border color on hover */
+  background-color: #f0f8ff; /* Change background color on hover */
+}
+
