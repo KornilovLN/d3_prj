@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+
+{% block title %}D3 Test - Vodo-pump risunok SVG{% endblock %}
+
+{% block content %}
+<div id="d3-container">
+    <h2 class="custom-sidebar">Vodo: bidon-pump-bidon - Example</h2>
+    <div id="svg-container" style="width: 1500px; height: 700px; border: 1px solid #ccc;">
+        <svg id="main-container" width="1500" height="700"></svg>
+    </div>
+</div>
+
+<script src="{{ url_for('static', filename='js/svg_components/grid_50.js') }}"></script>
+<script src="{{ url_for('static', filename='js/svg_components/bidon_icon_0.js') }}"></script>
+<script src="{{ url_for('static', filename='js/svg_components/pump_icon_0.js') }}"></script>
+<script src="{{ url_for('static', filename='js/svg_components/pipeline_icon_0.js') }}"></script>
+<script>
+    const mainSvg = "#main-container";
+
+    createGrid(mainSvg, 1500, 700, 50);
+
+    createPumpIcon(mainSvg, "Pump-01", 1500, 600, 500);
+
+    // Horizontal pipe
+    createPipeline(mainSvg, 200, 500, 550, 500, "#486591", 10);
+    createPipeline(mainSvg, 650, 500, 1000, 500, "#486591", 10);
+    createPipeline(mainSvg, 1000, 500, 1300, 500, "#486591", 10);
+    // Vertical pipe
+    createPipeline(mainSvg, 200, 440, 200, 500, "#486591", 10);
+    createPipeline(mainSvg, 1000, 400, 1000, 500, "#486591", 10);
+    createPipeline(mainSvg, 1300, 390, 1300, 500, "#486591", 10);
+
+    // Initial bidon states
+    createBidonIcon(mainSvg, "Bidon-1", 900, 900, 200, 300);  // Full main bidon
+    createBidonIcon(mainSvg, "Bidon-2", 500, 0, 1000, 300);   // Empty bidon
+    createBidonIcon(mainSvg, "Bidon-3", 400, 0, 1300, 300);   // Empty bidon
+    
+    // Start animation after a short delay
+    let cycles = 5;
+    let currentCycle = 0;
+
+    function runAnimationCycle() {
+        if (currentCycle < cycles) {
+            startPumping();
+            setTimeout(() => {
+                startReverseAnimation();
+                setTimeout(() => {
+                    currentCycle++;
+                    runAnimationCycle();
+                }, 11000);
+            }, 11000);
+        }
+    }
+
+    setTimeout(() => {
+        runAnimationCycle();
+    }, 1000);
+
+    
+    // Position the elements
+    /*
+    d3.select(mainSvg)
+        .selectAll(".bidon-group")
+        .each(function(d, i) {
+            const x = i === 0 ? 200 : (i === 1 ? 1000 : 1300);
+            d3.select(this).attr("transform", `translate(${x}, 300)`);
+        });
+    d3.select(mainSvg)
+        .select(".pump-group")
+        .attr("transform", "translate(600, 300)");
+    */    
+</script>
+{% endblock %}
+

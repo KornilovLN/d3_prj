@@ -33,7 +33,7 @@
         <div class="row">
           <div class="flex-grow-1 d-flex">
 
-            <nav class="col-md-3 col-lg-2 d-md-block bg-light sidebar custom-sidebar">
+            <nav class="col-md-2 col-lg-2 d-md-block bg-light sidebar custom-sidebar">
                 <div class="position-sticky">
                     <h2 class="custom-sidebar">Выбор тестов</h2>
                     <ul class="nav-list">
@@ -47,13 +47,16 @@
                         <li><a href="{{ url_for('main.d3_test', test_number=8) }}">Текст</a></li>
                         <li><a href="{{ url_for('main.d3_test', test_number=9) }}">drawing.svg</a></li>
                         <li><a href="{{ url_for('main.d3_test', test_number=10) }}">Текст 2</a></li>
+                        <li><a href="{{ url_for('main.d3_test', test_number=11) }}">Bidon param Example</a></li>
+                        <li><a href="{{ url_for('main.d3_test', test_number=12) }}">Tank model</a></li>
+                        <li><a href="{{ url_for('main.d3_test', test_number=13) }}">Vodo: bidon-pump-bidon</a></li>
                         <!-- Add more links as needed -->
                     </ul>
                 </div>
             </nav>
             
             
-            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+            <main class="col-md-10 ms-sm-auto col-lg-10 px-md-4">
               <div class="content">
                 {% block content %}
                 {% endblock %}

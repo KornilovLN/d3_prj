@@ -1,17 +1,53 @@
 .
 ├── app
 │   ├── __init__.py
+│   ├── __pycache__
+│   │   ├── __init__.cpython-39.pyc
+│   │   └── routes.cpython-39.pyc
 │   ├── routes.py
 │   ├── static
-│   │   ├── d3
-│   │   │   └── d3.v3.js
-│   │   └── style.css
+│   │   ├── drawing-1.svg
+│   │   ├── drawing.svg
+│   │   ├── empty_dashboard_64dp_BB271A_FILL0_wght400_GRAD0_opsz48.svg
+│   │   ├── js
+│   │   │   ├── config
+│   │   │   │   └── bidon_config.js
+│   │   │   └── svg_components
+│   │   │       ├── bidon_icon_0.js
+│   │   │       ├── bidon_icon_0_.js
+│   │   │       ├── bidon_param_0.js
+│   │   │       ├── grid_50.js
+│   │   │       ├── pipeline_icon_0.js
+│   │   │       ├── pipeline_icon_0_.js
+│   │   │       └── pump_icon_0.js
+│   │   ├── logo_big_2.png
+│   │   ├── style.css
+│   │   ├── styles_base.css
+│   │   └── system-settings-svgrepo-com.svg
 │   └── templates
 │       ├── base.html
+│       ├── d3_test_010.html
+│       ├── d3_test_011.html
+│       ├── d3_test_012.html
+│       ├── d3_test_013.html
+│       ├── d3_test_013.html_
 │       ├── d3_test_01.html
-│       └── index.html
+│       ├── d3_test_02.html
+│       ├── d3_test_03.html
+│       ├── d3_test_04.html
+│       ├── d3_test_05.html
+│       ├── d3_test_06.html
+│       ├── d3_test_07.html
+│       ├── d3_test_08.html
+│       ├── d3_test_09.html
+│       ├── index.html
+│       └── svg_container.html
+├── app.py
 ├── docker-compose.yml
 ├── Dockerfile
+├── libraries_info
+│   ├── svg_group.md
+│   └── svg_libs.md
 ├── minrest.sh
 ├── nginx.conf
 ├── requirements.txt
@@ -19,4 +55,4 @@
 ├── shared_folder
 └── tree
 
-5 directories, 14 files
+9 directories, 46 files

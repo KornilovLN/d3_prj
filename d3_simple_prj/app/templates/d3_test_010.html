@@ -6,12 +6,18 @@
 {% block content %}
 <div id="d3-container">
     <h2 class="custom-sidebar">Text Example 2</h2>
-    <svg width="1200" height="800" style="border: 1px solid #ccc;"></svg>
+    <svg width="1500" height="700" style="border: 1px solid #ccc;">
+        <!-- Добавляем прямоугольник для фона -->
+        <rect width="100%" height="100%" fill="#dfd8d4"></rect>
+        rgba(33, 37, 41, 0.5)
+    </svg>    
 </div>
 
 <script>
     // Example D3.js code to render text
     const svg = d3.select("svg");
+
+    //------------------------------------------------------------
 
     // Create a group for the first text
     const group1 = svg.append("g")
@@ -19,7 +25,7 @@
 
     // Add the first text to group1
     group1.append("text")
-        .attr("x", 600)          // X position of the text
+        .attr("x", 700)          // X position of the text
         .attr("y", 100)          // Y position of the text
         .attr("text-anchor", "middle") // Align text to the middle
         .style("font-size", "72px")    // Font size
@@ -27,7 +33,9 @@
         .style("fill", "yellow")        // Text color
         .style("stroke", "red")
         .style("stroke-width", 1)
-        .text("Hello, SVG!");   // Text content
+        .text("Hello, SVG group 1!");   // Text content
+
+    //------------------------------------------------------------
 
     // Create a group for the second text with shadow
     const group2 = svg.append("g")
@@ -60,7 +68,7 @@
 
     // Add text with the drop shadow filter applied to group2
     group2.append("text")
-        .attr("x", 600)
+        .attr("x", 700)
         .attr("y", 250)
         .attr("text-anchor", "middle")
         .style("font-size", "96px")
@@ -69,6 +77,25 @@
         .style("stroke", "blue")
         .style("stroke-width", 1)
         .style("filter", "url(#drop-shadow)") // Apply the drop shadow filter
-        .text("Hello, SVG with Shadow!");
+        .text("Hello, SVG with Shadow group 2!");
+
+    //------------------------------------------------------------
+    
+        // Create a group for the first text
+        const group3 = svg.append("g")
+        .attr("id", "group1");
+
+    // Add the first text to group3
+    group3.append("text")
+        .attr("x", 700)          // X position of the text
+        .attr("y", 400)          // Y position of the text
+        .attr("text-anchor", "middle") // Align text to the middle
+        .style("font-size", "96px")    // Font size
+        .style("font-family", "Arial, sans-serif") // Font family
+        .style("fill", "red")        // Text color
+        .style("stroke", "black")
+        .style("stroke-width", 3)
+        .text("Hello, SVG group 3!");   // Text content
+
 </script>
 {% endblock %}
